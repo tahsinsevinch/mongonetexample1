@@ -1,0 +1,63 @@
+﻿@model DAL.Entities.Player
+
+@{
+    ViewBag.Title = "Player's details";
+}
+
+<h2>Player's details</h2>
+
+<fieldset>
+    <legend>Player</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Gender)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Gender)
+    </div>
+</fieldset>
+
+<table>
+    <tr>
+        <th>
+            Game
+        </th>
+        <th>
+            Date & Time
+        </th>
+        <th>
+            Score
+        </th>
+    </tr>
+
+    @foreach (var score in Model.Scores)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => score.GameName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => score.ScoreDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => score.ScoreValue)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Play Games!", "PlayGames", new { id = Model.Id })
+</p>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    @Html.ActionLink("Back to List", "Index")
+</p>

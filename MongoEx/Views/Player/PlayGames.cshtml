@@ -1,0 +1,31 @@
+﻿@model MongoEx.Models.PlayerGames
+
+@{
+    ViewBag.Title = "PlayGames";
+}
+
+<h2>Play games</h2>
+
+<fieldset>
+    <legend>Player</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Player.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Player.Name)
+    </div>
+</fieldset>
+
+<h3>Click on the desired game and register your score</h3>
+
+@foreach (var game in Model.AvailableGames)
+{
+    <p>
+        @Html.ActionLink(game.Name, "AddScore", new { playerId = Model.Player.Id, gameId = game.Id, gameName = game.Name })
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
